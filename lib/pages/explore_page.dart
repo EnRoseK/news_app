@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/components/explore_page/explore_page_body.dart';
+import 'package:news_app/components/explore_page/explore_page_categories.dart';
 import 'package:news_app/utils/thememode_color.dart';
 
 class ExplorePage extends StatelessWidget {
@@ -33,6 +35,23 @@ class ExplorePage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      body: RefreshIndicator(
+        onRefresh: () async {},
+        child: const Padding(
+          padding: EdgeInsets.only(
+            top: 16,
+          ),
+          child: Column(
+            children: [
+              ExplorePageCategories(),
+              SizedBox(height: 24),
+              Expanded(
+                child: ExplorePageBody(),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
