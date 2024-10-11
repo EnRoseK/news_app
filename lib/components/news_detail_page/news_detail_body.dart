@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/utils/constants/colors.dart';
+import 'package:news_app/components/common/news_metadata.dart';
 import 'package:news_app/utils/thememode_color.dart';
 
 class NewsDetailBody extends StatelessWidget {
@@ -32,29 +32,7 @@ class NewsDetailBody extends StatelessWidget {
                 style: Theme.of(context).textTheme.displaySmall,
               ),
               const SizedBox(height: 16),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(24),
-                    child: Container(
-                      width: 24,
-                      height: 24,
-                      decoration: const BoxDecoration(
-                        color: AppColors.textPlaceholderLight,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    "Harry Harper · Apr 12, 2023",
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(color: textSecondary(isLightMode)),
-                  ),
-                ],
-              ),
+              const NewsMetadata(),
               const SizedBox(height: 24),
               Expanded(
                 child: SingleChildScrollView(
