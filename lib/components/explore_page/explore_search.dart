@@ -63,6 +63,8 @@ class _ExploreSearchState extends State<ExploreSearch> {
                   autofocus: true,
                   cursorColor: textPrimary(isLightMode(context)),
                   keyboardType: TextInputType.text,
+                  keyboardAppearance:
+                      isLightMode(context) ? Brightness.light : Brightness.dark,
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: textPrimary(isLightMode(context)),
                         fontWeight: FontWeight.normal,
