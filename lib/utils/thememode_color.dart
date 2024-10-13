@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/utils/constants/colors.dart';
 
+bool isLightMode(BuildContext context) {
+  return MediaQuery.of(context).platformBrightness == Brightness.light;
+}
+
 Color textPrimary(bool isLightMode) {
   return isLightMode ? AppColors.textPrimaryLight : AppColors.textPrimaryDark;
 }

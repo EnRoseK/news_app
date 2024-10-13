@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/components/explore_page/explore_page_body.dart';
 import 'package:news_app/components/explore_page/explore_page_categories.dart';
+import 'package:news_app/components/explore_page/explore_search.dart';
 import 'package:news_app/utils/thememode_color.dart';
 
 class ExplorePage extends StatelessWidget {
   const ExplorePage({super.key});
+
+  void _handleSearchTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ExploreSearch(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +35,9 @@ class ExplorePage extends StatelessWidget {
               right: 20,
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                _handleSearchTap(context);
+              },
               icon: Icon(
                 Icons.search,
                 size: 24,
