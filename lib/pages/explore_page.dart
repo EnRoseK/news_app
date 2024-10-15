@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/components/common/ripple_container.dart';
 import 'package:news_app/components/explore_page/explore_page_body.dart';
 import 'package:news_app/components/explore_page/explore_page_categories.dart';
 import 'package:news_app/components/explore_page/explore_search.dart';
@@ -17,9 +18,6 @@ class ExplorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isLightMode =
-        MediaQuery.of(context).platformBrightness == Brightness.light;
-
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 68,
@@ -34,14 +32,14 @@ class ExplorePage extends StatelessWidget {
             padding: const EdgeInsets.only(
               right: 20,
             ),
-            child: IconButton(
-              onPressed: () {
-                _handleSearchTap(context);
-              },
-              icon: Icon(
+            child: RippleContainer(
+              onTap: () => _handleSearchTap(context),
+              borderRadius: BorderRadius.circular(999),
+              padding: const EdgeInsets.all(8),
+              child: Icon(
                 Icons.search,
                 size: 24,
-                color: textPrimary(isLightMode),
+                color: textPrimary(isLightMode(context)),
               ),
             ),
           ),

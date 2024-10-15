@@ -23,9 +23,7 @@ class ExploreSearchResult extends StatelessWidget {
         centerTitle: true,
         leadingWidth: 80,
         leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
+          onTap: () => Navigator.pop(context),
           child: Padding(
             padding: const EdgeInsets.all(14),
             child: Icon(

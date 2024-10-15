@@ -16,9 +16,6 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isLightMode =
-        MediaQuery.of(context).platformBrightness == Brightness.light;
-
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(24),
@@ -34,20 +31,20 @@ class BottomNavBar extends StatelessWidget {
             horizontal: 32,
             vertical: 16,
           ),
-          color: isLightMode
+          color: isLightMode(context)
               ? const Color(0xFFFCE9EE).withOpacity(0.8)
               : const Color(0xFF1C1C1C).withOpacity(0.8),
           child: GNav(
             textStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
-                  color: backgroundPrimary(isLightMode),
+                  color: backgroundPrimary(isLightMode(context)),
                 ),
             gap: 7,
             backgroundColor: Colors.transparent,
             iconSize: 24,
-            color: textPrimary(isLightMode),
-            activeColor: backgroundPrimary(isLightMode),
-            tabBackgroundColor: textPrimary(isLightMode),
-            rippleColor: backgroundPrimary(!isLightMode),
+            color: textPrimary(isLightMode(context)),
+            activeColor: backgroundPrimary(isLightMode(context)),
+            tabBackgroundColor: textPrimary(isLightMode(context)),
+            rippleColor: backgroundPrimary(!isLightMode(context)),
             duration: const Duration(milliseconds: 200),
             padding: const EdgeInsets.all(16),
             tabBorderRadius: 24,

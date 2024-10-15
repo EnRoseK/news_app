@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/components/common/ripple_container.dart';
 import 'package:news_app/utils/thememode_color.dart';
 
 class ProfilePageMenu extends StatelessWidget {
@@ -26,34 +27,29 @@ class ProfilePageMenu extends StatelessWidget {
     );
   }
 
-  Material _item(BuildContext context,
+  RippleContainer _item(BuildContext context,
       {required String title, required void Function() onTap}) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 11),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Text(
-                title,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(color: textPrimary(isLightMode(context))),
-              ),
-              Icon(
-                Icons.keyboard_arrow_right,
-                size: 20,
-                color: textPrimary(isLightMode(context)),
-              ),
-            ],
+    return RippleContainer(
+      onTap: onTap,
+      padding: const EdgeInsets.symmetric(vertical: 11),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Text(
+            title,
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge!
+                .copyWith(color: textPrimary(isLightMode(context))),
           ),
-        ),
+          Icon(
+            Icons.keyboard_arrow_right,
+            size: 20,
+            color: textPrimary(isLightMode(context)),
+          ),
+        ],
       ),
     );
   }

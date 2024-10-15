@@ -7,9 +7,6 @@ class NewsDetailBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isLightMode =
-        MediaQuery.of(context).platformBrightness == Brightness.light;
-
     return Positioned(
       left: 0,
       right: 0,
@@ -23,7 +20,7 @@ class NewsDetailBody extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24)
               .copyWith(bottom: 0),
-          color: backgroundPrimary(isLightMode),
+          color: backgroundPrimary(isLightMode(context)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

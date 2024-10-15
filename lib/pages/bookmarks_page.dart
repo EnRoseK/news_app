@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/components/bookmarks_page/bookmarks_news_item.dart';
+import 'package:news_app/components/common/ripple_container.dart';
 import 'package:news_app/utils/thememode_color.dart';
 
 class BookmarksPage extends StatefulWidget {
@@ -41,32 +42,32 @@ class _BookmarksPageState extends State<BookmarksPage> {
             padding: const EdgeInsets.only(
               right: 20,
             ),
-            child: _isEditing
-                ? TextButton(
-                    onPressed: _handleDisableEdit,
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 12,
-                      ),
-                      overlayColor: brandBlue(isLightMode(context)),
-                    ),
-                    child: Text(
+            child: RippleContainer(
+              onTap: _isEditing ? _handleDisableEdit : _handleEnableEdit,
+              padding: _isEditing
+                  ? const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    )
+                  : const EdgeInsets.all(8),
+              borderRadius: BorderRadius.circular(128),
+              splashColor: _isEditing
+                  ? brandBlue(isLightMode(context)).withOpacity(0.1)
+                  : null,
+              child: _isEditing
+                  ? Text(
                       "Done",
                       style: Theme.of(context)
                           .textTheme
                           .labelMedium!
                           .copyWith(color: brandBlue(isLightMode(context))),
-                    ),
-                  )
-                : IconButton(
-                    onPressed: _handleEnableEdit,
-                    icon: Icon(
+                    )
+                  : Icon(
                       Icons.edit_outlined,
                       size: 24,
                       color: textPrimary(isLightMode(context)),
                     ),
-                  ),
+            ),
           ),
         ],
       ),

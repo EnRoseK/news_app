@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/components/common/ripple_container.dart';
 import 'package:news_app/components/home_page/home_news_list_item.dart';
-import 'package:news_app/utils/constants/colors.dart';
+import 'package:news_app/utils/thememode_color.dart';
 
 class HomeNewsList extends StatelessWidget {
   const HomeNewsList({super.key});
@@ -44,18 +45,17 @@ class HomeNewsList extends StatelessWidget {
             "Just For You",
             style: Theme.of(context).textTheme.headlineLarge,
           ),
-          TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 6,
-                vertical: 12,
-              ),
+          RippleContainer(
+            borderRadius: BorderRadius.circular(24),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 12,
             ),
+            splashColor: brandBlue(isLightMode(context)).withOpacity(0.1),
             child: Text(
               "See More",
               style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: AppColors.brandBlueLight,
+                    color: brandBlue(isLightMode(context)),
                   ),
             ),
           ),

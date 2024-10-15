@@ -7,9 +7,6 @@ class NewsMetadata extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isLightMode =
-        MediaQuery.of(context).platformBrightness == Brightness.light;
-
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -29,7 +26,7 @@ class NewsMetadata extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .titleSmall!
-              .copyWith(color: textSecondary(isLightMode)),
+              .copyWith(color: textSecondary(isLightMode(context))),
         ),
       ],
     );
