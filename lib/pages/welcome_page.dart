@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:news_app/components/common/ripple_container.dart';
 import 'package:news_app/pages/main_page.dart';
 import 'package:news_app/utils/thememode_color.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
+
+  void _handleOnButtonTap() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool("firstTime", false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,12 +74,15 @@ class WelcomePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 24),
                       RippleContainer(
-                        onTap: () => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MainPage(),
-                          ),
-                        ),
+                        onTap: () {
+                          _handleOnButtonTap();
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MainPage(),
+                            ),
+                          );
+                        },
                         padding: const EdgeInsets.symmetric(
                           horizontal: 24,
                           vertical: 16,
