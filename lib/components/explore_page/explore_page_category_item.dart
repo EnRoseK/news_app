@@ -4,10 +4,14 @@ import 'package:news_app/utils/thememode_color.dart';
 
 class ExplorePageCategoryItem extends StatelessWidget {
   const ExplorePageCategoryItem(
-      {super.key, required this.name, required this.isSelected});
+      {super.key,
+      required this.name,
+      required this.isSelected,
+      required this.onTap});
 
   final String name;
   final bool isSelected;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class ExplorePageCategoryItem extends StatelessWidget {
         style: BorderStyle.solid,
       ),
       splashColor: brandBlue10(isLightMode(context)),
-      onTap: isSelected ? null : () {},
+      onTap: isSelected ? null : onTap,
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
       child: Text(
         name,

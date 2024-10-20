@@ -66,17 +66,20 @@ class ExplorePage extends StatelessWidget {
           padding: const EdgeInsets.only(
             top: 16,
           ),
-          child: Skeletonizer(
-            enabled: categoryLoading && articleLoading,
-            child: const Column(
-              children: [
-                ExplorePageCategories(),
-                SizedBox(height: 24),
-                Expanded(
-                  child: ExplorePageBody(),
+          child: Column(
+            children: [
+              Skeletonizer(
+                enabled: categoryLoading,
+                child: const ExplorePageCategories(),
+              ),
+              const SizedBox(height: 24),
+              Expanded(
+                child: Skeletonizer(
+                  enabled: articleLoading,
+                  child: const ExplorePageBody(),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

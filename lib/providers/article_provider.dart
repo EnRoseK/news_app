@@ -8,12 +8,14 @@ class ArticleProvider extends ChangeNotifier {
   bool error = false;
   final ArticleService articleService = ArticleService();
 
-  void getArticles() async {
+  void getArticles({String? categoryId}) async {
     loading = true;
     notifyListeners();
 
     try {
-      articles = await articleService.getArticles();
+      articles = await articleService.getArticles(
+        categoryId: categoryId,
+      );
     } catch (e) {
       error = true;
     } finally {
