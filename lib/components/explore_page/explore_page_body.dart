@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/components/explore_page/explore_page_large_news_item.dart';
 import 'package:news_app/components/explore_page/explore_page_news_item.dart';
+import 'package:news_app/models/article.dart';
+import 'package:news_app/providers/article_provider.dart';
+import 'package:provider/provider.dart';
 
 class ExplorePageBody extends StatelessWidget {
   const ExplorePageBody({super.key});
 
-  final List<int> data = const [1, 2, 3, 4, 5, 6];
-
   @override
   Widget build(BuildContext context) {
+    final List<Article> articles =
+        Provider.of<ArticleProvider>(context, listen: true).articles;
+
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: 32).copyWith(
         bottom: 100,
@@ -19,12 +23,12 @@ class ExplorePageBody extends StatelessWidget {
       ),
       itemBuilder: (context, index) {
         if (index == 0) {
-          return const ExplorePageLargeNewsItem();
+          return ExplorePageLargeNewsItem(article: articles[index]);
         } else {
-          return const ExplorePageNewsItem();
+          return ExplorePageNewsItem(article: articles[index]);
         }
       },
-      itemCount: data.length,
+      itemCount: articles.length,
     );
   }
 }

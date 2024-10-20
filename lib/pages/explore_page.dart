@@ -3,7 +3,11 @@ import 'package:news_app/components/common/ripple_container.dart';
 import 'package:news_app/components/explore_page/explore_page_body.dart';
 import 'package:news_app/components/explore_page/explore_page_categories.dart';
 import 'package:news_app/components/explore_page/explore_search.dart';
+import 'package:news_app/providers/article_provider.dart';
+import 'package:news_app/providers/category_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:news_app/utils/thememode_color.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ExplorePage extends StatelessWidget {
   const ExplorePage({super.key});
@@ -16,8 +20,17 @@ class ExplorePage extends StatelessWidget {
     );
   }
 
+  void _handleRefresh(BuildContext context) {
+    Provider.of<CategoryProvider>(context, listen: false).getCategories();
+    Provider.of<ArticleProvider>(context, listen: false).getArticles();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final bool categoryLoading =
+        Provider.of<CategoryProvider>(context, listen: true).loading;
+    final bool articleLoading =
+        Provider.of<ArticleProvider>(context, listen: true).loading;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 68,
@@ -46,19 +59,24 @@ class ExplorePage extends StatelessWidget {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: () async {},
-        child: const Padding(
-          padding: EdgeInsets.only(
+        onRefresh: () async {
+          _handleRefresh(context);
+        },
+        child: Padding(
+          padding: const EdgeInsets.only(
             top: 16,
           ),
-          child: Column(
-            children: [
-              ExplorePageCategories(),
-              SizedBox(height: 24),
-              Expanded(
-                child: ExplorePageBody(),
-              ),
-            ],
+          child: Skeletonizer(
+            enabled: categoryLoading && articleLoading,
+            child: const Column(
+              children: [
+                ExplorePageCategories(),
+                SizedBox(height: 24),
+                Expanded(
+                  child: ExplorePageBody(),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/components/common/news_metadata.dart';
+import 'package:news_app/models/article.dart';
 import 'package:news_app/pages/news_detail_page.dart';
-import 'package:news_app/utils/constants/colors.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ExplorePageLargeNewsItem extends StatelessWidget {
-  const ExplorePageLargeNewsItem({super.key});
+  const ExplorePageLargeNewsItem({super.key, required this.article});
+
+  final Article article;
 
   void _handleOnTap(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const NewsDetailPage(),
+        builder: (context) => NewsDetailPage(article: article),
       ),
     );
   }
@@ -26,11 +29,13 @@ class ExplorePageLargeNewsItem extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Container(
+            child: SizedBox(
               width: double.infinity,
               height: 206,
-              decoration: const BoxDecoration(
-                color: AppColors.textPlaceholderLight,
+              child: FadeInImage(
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(article.picture),
+                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -40,7 +45,7 @@ class ExplorePageLargeNewsItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Uncovering the Hidden Gems of the Amazon Forest",
+                  article.name,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.headlineLarge,

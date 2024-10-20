@@ -46,9 +46,11 @@ class ExploreSearchResult extends StatelessWidget {
               child: ListView.separated(
                 padding: const EdgeInsets.symmetric(horizontal: 32)
                     .copyWith(bottom: 32),
-                itemBuilder: (context, index) => ExplorePageNewsItem(
-                  key: ValueKey(data[index]),
-                ),
+                // itemBuilder: (context, index) => ExplorePageNewsItem(
+                //   key: ValueKey(data[index]),
+
+                // ),
+                itemBuilder: (context, index) => SizedBox(),
                 separatorBuilder: (context, index) => SizedBox(
                   height: 24,
                   key: ValueKey(index),

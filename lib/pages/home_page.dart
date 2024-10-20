@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/components/home_page/home_appbar_actions.dart';
 import 'package:news_app/components/home_page/home_appbar_title.dart';
 import 'package:news_app/components/home_page/home_news_list.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -22,16 +23,19 @@ class HomePage extends StatelessWidget {
       ),
       body: RefreshIndicator(
         onRefresh: () async {},
-        child: ListView.separated(
-          physics: const AlwaysScrollableScrollPhysics(),
-          padding: const EdgeInsets.only(top: 24, bottom: 100),
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context, index) => HomeNewsList(
-            key: ValueKey(data[index]),
+        child: Skeletonizer(
+          enabled: false,
+          child: ListView.separated(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.only(top: 24, bottom: 100),
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) => HomeNewsList(
+              key: ValueKey(data[index]),
+            ),
+            separatorBuilder: (context, index) =>
+                SizedBox(key: ValueKey(index), height: 16),
+            itemCount: data.length,
           ),
-          separatorBuilder: (context, index) =>
-              SizedBox(key: ValueKey(index), height: 16),
-          itemCount: data.length,
         ),
       ),
     );

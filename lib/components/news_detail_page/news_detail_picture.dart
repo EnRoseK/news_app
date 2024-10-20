@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/utils/constants/colors.dart';
 
 class NewsDetailPicture extends StatelessWidget {
-  const NewsDetailPicture({super.key});
+  const NewsDetailPicture({super.key, required this.picureUrl});
+
+  final String picureUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +13,9 @@ class NewsDetailPicture extends StatelessWidget {
       right: 0,
       child: AspectRatio(
         aspectRatio: 215 / 158,
-        child: Container(
-          color: AppColors.textPlaceholderLight,
+        child: Image.network(
+          picureUrl,
+          fit: BoxFit.cover,
         ),
       ),
     );

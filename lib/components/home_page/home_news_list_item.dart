@@ -6,12 +6,12 @@ class HomeNewsListItem extends StatelessWidget {
   const HomeNewsListItem({super.key});
 
   void _handleOnTap(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const NewsDetailPage(),
-      ),
-    );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => const NewsDetailPage(),
+    //   ),
+    // );
   }
 
   @override

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/components/common/news_metadata.dart';
+import 'package:news_app/models/article.dart';
 import 'package:news_app/pages/news_detail_page.dart';
-import 'package:news_app/utils/constants/colors.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ExplorePageNewsItem extends StatelessWidget {
-  const ExplorePageNewsItem({super.key});
+  const ExplorePageNewsItem({super.key, required this.article});
+
+  final Article article;
 
   void _handleOnTap(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const NewsDetailPage(),
+        builder: (context) => NewsDetailPage(article: article),
       ),
     );
   }
@@ -28,7 +31,7 @@ class ExplorePageNewsItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Experience the Serenity of Japan's Traditional Countryside",
+                  article.name,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.headlineMedium,
@@ -43,11 +46,13 @@ class ExplorePageNewsItem extends StatelessWidget {
             borderRadius: const BorderRadius.all(
               Radius.circular(8),
             ),
-            child: Container(
+            child: SizedBox(
               width: 112,
               height: 80,
-              decoration: const BoxDecoration(
-                color: AppColors.textPlaceholderLight,
+              child: FadeInImage(
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(article.picture),
+                fit: BoxFit.cover,
               ),
             ),
           ),
